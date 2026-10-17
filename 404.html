@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GYEOL 결</title>
+<link rel="icon" type="image/svg+xml" href="assets/gyeol-logo-ink.svg">
+<meta name="description" content="브랜드 숏폼 영상과 웹·앱·소프트웨어를 기획부터 운영까지 제작합니다.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Noto+Serif+KR:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+:root{
+  --ivory:#F5F1EA;
+  --paper:#FBF9F5;
+  --ink:#1A1A1A;
+  --ink-soft:#4A4640;
+  --stone:#8A8074;
+  --line:#DDD5C9;
+  --serif:'Noto Serif KR',serif;
+  --latin:'Cormorant Garamond','Noto Serif KR',serif;
+  --sans:'Pretendard',-apple-system,'Apple SD Gothic Neo',sans-serif;
+  --max:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ivory);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;word-break:keep-all}
+a{color:inherit;text-decoration:none}
+img,svg{display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 32px}
+.eyebrow{font-family:var(--latin);font-size:15px;letter-spacing:.32em;text-transform:uppercase;color:var(--stone)}
+.h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.4vw,40px);line-height:1.35;letter-spacing:-.01em}
+.lead{color:var(--ink-soft);font-size:17px}
+.btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 26px;border:1px solid var(--ink);font-size:15px;font-weight:500;transition:background .25s,color .25s}
+.btn.solid{background:var(--ink);color:var(--ivory)}
+.btn.solid:hover{background:#000}
+.btn.ghost:hover{background:var(--ink);color:var(--ivory)}
+.btn .arr{transition:transform .25s}
+.btn:hover .arr{transform:translateX(4px)}
+section{padding:120px 0}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:56px;flex-wrap:wrap}
+.sec-head .h2{margin-top:14px}
+.sec-head p{max-width:420px}
+.draft-tag{display:inline-block;font-size:11px;letter-spacing:.08em;padding:3px 8px;border:1px dashed currentColor;opacity:.6;margin-left:8px;vertical-align:middle}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:rgba(245,241,234,.88);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+header.scrolled{border-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .mark{height:38px;width:auto}
+.brand .word{font-family:var(--latin);font-size:20px;letter-spacing:.42em;font-weight:500}
+.menu{display:flex;align-items:center;gap:36px;font-size:15px}
+.menu a:not(.btn){position:relative;color:var(--ink-soft)}
+.menu a:not(.btn):hover{color:var(--ink)}
+.menu .btn{height:42px;padding:0 20px}
+.burger{display:none;background:none;border:0;width:40px;height:40px;cursor:pointer}
+.burger span{display:block;width:22px;height:1px;background:var(--ink);margin:6px auto}
+
+/* hero */
+.hero{padding:72px 0 96px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(38px,5.4vw,68px);line-height:1.28;letter-spacing:-.02em;margin:22px 0 26px}
+.hero .lead{font-size:clamp(17px,1.5vw,19px);max-width:520px}
+.hero-cta{display:flex;gap:12px;margin-top:40px;flex-wrap:wrap}
+.hero-meta{display:flex;gap:40px;margin-top:64px;padding-top:28px;border-top:1px solid var(--line);font-size:14px;color:var(--stone)}
+.hero-meta b{display:block;font-family:var(--serif);font-weight:500;color:var(--ink);font-size:18px;margin-bottom:2px}
+.logo-stage{position:relative;max-width:380px;width:100%;justify-self:end;text-align:center}
+.logo-stage svg{width:100%;height:auto;overflow:visible}
+.logo-fill{fill:var(--ink);opacity:0;animation:fadeIn .9s 1.3s ease forwards}
+.logo-line{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:0;animation:draw 1.5s .2s cubic-bezier(.45,.05,.35,1) forwards}
+.logo-lines{animation:fadeOut .6s 2.1s ease forwards}
+.logo-word{display:block;margin-top:22px;padding-left:.6em;font-family:var(--latin);font-size:22px;letter-spacing:.6em;font-weight:500;opacity:0;animation:fadeIn 1s 1.9s ease forwards}
+@keyframes fadeOut{to{opacity:0}}
+@keyframes draw{0%{stroke-dashoffset:1;opacity:0}1%{opacity:1}100%{stroke-dashoffset:0;opacity:1}}
+@keyframes fadeIn{to{opacity:1}}
+
+/* services */
+.services{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line)}
+.svc{padding:52px 48px;display:flex;flex-direction:column;background:var(--paper);transition:background .3s}
+.svc + .svc{border-left:1px solid var(--line)}
+.svc:hover{background:var(--ivory)}
+.svc .num{font-family:var(--latin);font-size:15px;color:var(--stone);letter-spacing:.2em}
+.svc h3{font-family:var(--serif);font-weight:500;font-size:28px;margin:18px 0 6px}
+.svc .en{font-family:var(--latin);font-size:16px;color:var(--stone);letter-spacing:.06em}
+.svc p.desc{margin:22px 0 28px;color:var(--ink-soft)}
+.svc ul{list-style:none;border-top:1px solid var(--line);margin-bottom:36px}
+.svc li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}
+.svc li span:last-child{color:var(--stone);text-align:right}
+.svc .btn{margin-top:auto;align-self:flex-start}
+
+/* work (dark) */
+.work{background:var(--ink);color:var(--ivory)}
+.work .eyebrow{color:#A79D90}
+.work .lead{color:#BDB4A8}
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.case{display:flex;flex-direction:column}
+.thumb{position:relative;background:#262421;border:1px solid #34312D;overflow:hidden;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center}
+.thumb .phone{width:46%;aspect-ratio:9/16;border-radius:18px;background:linear-gradient(160deg,#3A362F,#211F1C);border:1px solid #4A453E;position:relative;display:flex;align-items:center;justify-content:center}
+.play{width:56px;height:56px;border-radius:50%;border:1px solid rgba(245,241,234,.7);display:flex;align-items:center;justify-content:center;background:rgba(26,26,26,.35);cursor:pointer;transition:background .25s}
+.play:hover{background:rgba(245,241,234,.15)}
+.play svg{margin-left:3px}
+.thumb .browser{width:82%;aspect-ratio:4/3;background:#2E2B27;border:1px solid #4A453E;border-radius:6px;overflow:hidden}
+.browser .bar{height:22px;border-bottom:1px solid #4A453E;display:flex;gap:5px;align-items:center;padding:0 9px}
+.browser .bar i{width:6px;height:6px;border-radius:50%;background:#5A544B}
+.browser .body{padding:14px;display:grid;gap:8px}
+.browser .body b{display:block;height:8px;background:#45403A;border-radius:2px}
+.browser .body b.w60{width:60%}.browser .body b.w80{width:80%}.browser .body b.blk{height:56px;background:#3A362F}
+.thumb .appstack{display:flex;gap:12px}
+.thumb .appstack .phone{width:auto;height:62%;aspect-ratio:9/19}
+.case .tag{font-size:12px;letter-spacing:.14em;color:#A79D90;margin:22px 0 8px;text-transform:uppercase;font-family:var(--latin)}
+.case h3{font-family:var(--serif);font-weight:500;font-size:21px;line-height:1.45}
+.case dl{margin-top:18px;display:grid;grid-template-columns:72px 1fr;gap:8px 12px;font-size:14px}
+.case dt{color:#8F877C}
+.case dd{color:#D9D1C5}
+.work-note{margin-top:40px;font-size:14px;color:#BDB4A8}
+.case .soon{margin-top:10px;font-size:14px;color:#8F877C}
+.soon-mark{font-family:var(--latin);font-size:13px;letter-spacing:.25em;text-transform:uppercase;color:#8F877C;text-align:center;padding:0 8px}
+
+/* pricing */
+.pricing-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:56px}
+.pricing h3{font-family:var(--serif);font-weight:500;font-size:22px;margin-bottom:22px}
+.pkg-table{width:100%;border-collapse:collapse;font-size:15px}
+.pkg-table th,.pkg-table td{text-align:left;padding:16px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.pkg-table thead th{font-weight:500;color:var(--stone);font-size:13px;letter-spacing:.04em;border-bottom:1px solid var(--ink)}
+.pkg-table td:first-child{font-family:var(--serif);font-weight:500;font-size:17px;white-space:nowrap}
+.pkg-table .price{white-space:nowrap}
+.fine{font-size:13px;color:var(--stone);margin-top:14px}
+.factors{list-style:none;border-top:1px solid var(--ink)}
+.factors li{padding:16px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:28px 1fr;font-size:15px}
+.factors li span{font-family:var(--latin);color:var(--stone)}
+.example{margin-top:28px;padding:24px;background:var(--paper);border:1px solid var(--line);font-size:15px}
+.example b{font-family:var(--serif);font-weight:500}
+
+/* process */
+.process{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(6,1fr);border-top:1px solid var(--ink);counter-reset:s}
+.step{padding:28px 20px 0 0}
+.step .n{font-family:var(--latin);font-size:34px;line-height:1;color:var(--stone)}
+.step h4{font-family:var(--serif);font-weight:500;font-size:18px;margin:16px 0 8px}
+.step p{font-size:14px;color:var(--ink-soft);line-height:1.6}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:center}
+.big-glyph{width:min(300px,70%);height:auto;margin:0 auto}
+.about .meaning{font-family:var(--latin);color:var(--stone);letter-spacing:.2em;margin-top:8px;text-align:center}
+.about p{margin-top:20px;color:var(--ink-soft)}
+.about blockquote{margin-top:32px;padding-left:20px;border-left:1px solid var(--ink);font-family:var(--serif);font-size:18px}
+
+/* contact */
+.contact{background:var(--paper);border-top:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px}
+.contact-info dl{margin-top:40px;display:grid;grid-template-columns:80px 1fr;gap:14px;font-size:15px}
+.contact-info dt{color:var(--stone)}
+form{display:grid;grid-template-columns:1fr 1fr;gap:20px 20px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field.full{grid-column:1/-1}
+label,.legend{font-size:14px;font-weight:500}
+label em,.legend em{font-style:normal;color:var(--stone);font-weight:400;margin-left:4px}
+input,select,textarea{font:inherit;font-size:15px;padding:13px 14px;border:1px solid var(--line);background:var(--ivory);color:var(--ink);border-radius:0;outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--ink)}
+textarea{min-height:130px;resize:vertical}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{font-weight:400;padding:10px 18px;border:1px solid var(--line);cursor:pointer;background:var(--ivory);transition:all .2s}
+.chips input:checked + label{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
+.chips input:focus-visible + label{outline:2px solid var(--stone);outline-offset:2px}
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink-soft)}
+.agree input{width:18px;height:18px;padding:0;margin-top:3px;accent-color:var(--ink)}
+.agree a{text-decoration:underline}
+.form-msg{grid-column:1/-1;font-size:14px;color:var(--stone);min-height:20px}
+
+/* footer */
+footer{background:var(--ink);color:#BDB4A8;padding:64px 0 48px;font-size:13px}
+.foot-top{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;flex-wrap:wrap;padding-bottom:36px;border-bottom:1px solid #34312D}
+footer .brand{color:var(--ivory)}
+footer .slogan{font-family:var(--serif);margin-top:12px;color:#A79D90;font-size:14px}
+.foot-links{display:flex;gap:28px}
+.foot-links a:hover{color:var(--ivory)}
+.foot-info{margin-top:28px;line-height:2}
+.foot-info span{margin-right:18px;white-space:nowrap}
+.foot-info b{font-weight:600;color:var(--ivory)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .logo-fill,.logo-word{animation:none;opacity:1}
+  .logo-lines{display:none}
+  .reveal{opacity:1;transform:none;transition:none}
+}
+
+@media (max-width:1024px){
+  .steps{grid-template-columns:repeat(3,1fr);row-gap:36px}
+  .cases{grid-template-columns:1fr 1fr}
+  .cases .case:last-child{grid-column:1/-1}
+  .cases .case:last-child .thumb{aspect-ratio:16/9}
+  .pricing-grid,.contact-grid,.about-grid{grid-template-columns:1fr;gap:48px}
+}
+@media (max-width:760px){
+  .wrap{padding:0 20px}
+  section{padding:84px 0}
+  .menu{display:none}
+  .menu.open{display:flex;position:absolute;top:76px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--ivory);border-bottom:1px solid var(--line);padding:8px 20px 20px}
+  .menu.open a:not(.btn){padding:14px 0;border-bottom:1px solid var(--line)}
+  .menu.open .btn{margin-top:16px;justify-content:center}
+  .burger{display:block}
+  .hero{padding:32px 0 72px}
+  .hero-grid{grid-template-columns:1fr;gap:8px}
+  .logo-stage{order:-1;max-width:170px;justify-self:center;margin-bottom:20px}
+  .logo-word{font-size:16px;margin-top:14px}
+  .eyebrow{letter-spacing:.2em;font-size:13px}
+  .hero-cta{flex-direction:column}
+  .hero-cta .btn{justify-content:center}
+  .hero-meta{gap:12px;margin-top:44px;justify-content:space-between;font-size:13px}
+  .hero-meta b{font-size:15px;white-space:nowrap}
+  .svc-grid{grid-template-columns:1fr}
+  .svc{padding:40px 24px}
+  .svc + .svc{border-left:0;border-top:1px solid var(--line)}
+  .cases{grid-template-columns:1fr}
+  .cases .case:last-child .thumb{aspect-ratio:4/5}
+  .steps{grid-template-columns:1fr 1fr}
+  .pkg-table th:nth-child(3),.pkg-table td:nth-child(3){display:none}
+  form{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap nav">
+    <a href="#top" class="brand" aria-label="GYEOL 홈"><img class="mark" src="assets/gyeol-logo-ink.svg" alt=""><span class="word">GYEOL</span></a>
+    <nav class="menu" id="menu">
+      <a href="#services">숏폼 제작</a>
+      <a href="#services">개발</a>
+      <a href="#work">사례</a>
+      <a href="#about">회사소개</a>
+      <a href="#contact" class="btn solid">프로젝트 문의</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="메뉴 열기" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Digital Content · Software</p>
+      <h1>생각을 잇고,<br>가치를 완성하다</h1>
+      <p class="lead">브랜드 숏폼 영상과 웹·앱·소프트웨어를<br>기획부터 운영까지 직접 제작합니다.</p>
+      <div class="hero-cta">
+        <a href="#services" class="btn solid">숏폼 제작 보기 <span class="arr">→</span></a>
+        <a href="#services" class="btn ghost">개발 서비스 보기 <span class="arr">→</span></a>
+      </div>
+      <div class="hero-meta">
+        <div><b>기획 → 운영</b>한 팀이 끝까지</div>
+        <div><b>영상 + 개발</b>한 곳에서</div>
+        <div><b>견적 기준 공개</b>투명한 계약</div>
+      </div>
+    </div>
+
+        <div class="logo-stage">
+      <svg viewBox="316 200 648 854 " role="img" aria-label="GYEOL 로고">
+        <path class="logo-fill" fill-rule="evenodd" d="M 492,768 L 501,779 L 511,794 L 523,817 L 523,819 L 525,822 L 529,834 L 531,847 L 535,859 L 538,863 L 542,865 L 548,865 L 550,864 L 555,859 L 558,853 L 558,841 L 554,832 L 554,830 L 552,828 L 551,825 L 536,805 L 519,788 L 503,775 Z M 436,761 L 413,774 L 390,790 L 379,799 L 369,809 L 360,820 L 354,829 L 347,843 L 343,855 L 342,863 L 341,864 L 341,871 L 340,872 L 340,888 L 344,879 L 344,877 L 352,861 L 370,835 L 387,815 L 422,778 Z M 748,755 L 742,749 L 723,734 L 720,734 L 704,749 L 682,749 L 681,750 L 653,750 L 652,751 L 604,752 L 582,742 L 582,748 L 583,749 L 583,774 L 584,775 L 584,801 L 585,802 L 585,827 L 586,828 L 587,888 L 588,889 L 588,892 L 600,886 L 609,877 L 609,858 L 608,857 L 608,854 L 609,853 L 647,852 L 648,851 L 671,851 L 672,850 L 694,850 L 695,849 L 714,849 L 715,850 L 715,862 L 716,865 L 736,857 L 737,854 L 736,853 L 736,827 L 735,826 L 735,800 L 734,799 L 734,778 L 733,777 L 733,768 L 741,761 L 746,758 Z M 711,759 L 712,798 L 713,799 L 713,819 L 714,820 L 714,838 L 713,839 L 705,839 L 704,840 L 683,840 L 682,841 L 657,841 L 656,842 L 631,842 L 630,843 L 609,843 L 608,842 L 607,798 L 606,797 L 606,771 L 605,770 L 605,763 L 606,762 L 609,762 L 610,761 L 628,761 L 629,760 L 652,760 L 653,759 L 676,759 L 677,758 L 702,758 L 703,757 L 709,757 Z M 800,637 L 814,658 L 825,681 L 833,705 L 834,713 L 835,714 L 835,719 L 836,720 L 836,726 L 837,727 L 837,758 L 836,759 L 836,766 L 835,767 L 835,771 L 832,779 L 832,782 L 829,791 L 827,794 L 827,796 L 819,812 L 813,820 L 812,823 L 804,833 L 792,846 L 791,846 L 781,856 L 771,864 L 748,879 L 720,893 L 718,893 L 705,899 L 684,906 L 681,906 L 677,908 L 674,908 L 673,909 L 670,909 L 669,910 L 666,910 L 665,911 L 662,911 L 653,914 L 649,914 L 648,915 L 644,915 L 639,917 L 635,917 L 634,918 L 620,920 L 615,922 L 611,922 L 606,924 L 602,924 L 597,926 L 593,926 L 592,927 L 581,929 L 577,931 L 574,931 L 556,937 L 543,943 L 541,943 L 523,952 L 501,967 L 482,986 L 477,994 L 474,997 L 465,1014 L 464,1019 L 462,1022 L 461,1029 L 473,1013 L 490,996 L 501,987 L 528,969 L 552,957 L 570,951 L 573,949 L 579,947 L 582,947 L 586,945 L 589,945 L 593,943 L 596,943 L 600,941 L 603,941 L 604,940 L 607,940 L 616,937 L 620,937 L 621,936 L 624,936 L 625,935 L 628,935 L 637,932 L 646,931 L 647,930 L 666,926 L 670,924 L 681,922 L 688,919 L 691,919 L 712,912 L 725,906 L 727,906 L 750,895 L 752,893 L 762,888 L 789,869 L 810,849 L 824,831 L 825,828 L 830,821 L 840,798 L 841,799 L 841,802 L 840,803 L 840,806 L 839,807 L 839,810 L 837,814 L 837,817 L 835,821 L 834,827 L 827,842 L 827,844 L 823,850 L 819,859 L 802,882 L 783,901 L 769,912 L 754,922 L 727,936 L 725,936 L 720,939 L 710,942 L 707,944 L 653,962 L 648,965 L 642,967 L 640,969 L 633,972 L 622,979 L 605,994 L 596,1006 L 590,1018 L 586,1030 L 584,1044 L 587,1038 L 602,1017 L 616,1003 L 635,989 L 645,984 L 647,982 L 649,982 L 658,977 L 660,977 L 668,973 L 683,968 L 686,968 L 690,966 L 693,966 L 697,964 L 700,964 L 711,960 L 717,959 L 720,957 L 738,951 L 751,944 L 753,944 L 755,942 L 770,934 L 784,924 L 808,901 L 825,877 L 835,857 L 835,855 L 839,847 L 844,832 L 844,829 L 846,825 L 846,821 L 849,812 L 850,802 L 851,801 L 851,794 L 852,793 L 852,783 L 853,782 L 853,757 L 852,756 L 851,739 L 850,738 L 850,733 L 849,732 L 849,728 L 847,723 L 847,719 L 843,709 L 842,703 L 838,695 L 838,693 L 823,665 L 811,649 Z M 713,576 L 732,579 L 750,585 L 753,587 L 755,587 L 773,596 L 796,611 L 815,627 L 835,648 L 855,676 L 861,689 L 863,691 L 866,700 L 868,703 L 868,705 L 870,708 L 872,714 L 872,717 L 874,721 L 875,728 L 876,729 L 877,739 L 878,740 L 878,746 L 879,747 L 880,768 L 879,769 L 878,791 L 877,792 L 877,797 L 876,798 L 876,802 L 875,803 L 874,810 L 871,817 L 870,823 L 864,836 L 864,838 L 859,847 L 859,849 L 857,851 L 867,841 L 873,833 L 883,815 L 883,813 L 885,810 L 890,795 L 891,787 L 892,786 L 892,781 L 893,780 L 893,772 L 894,771 L 894,750 L 893,749 L 893,741 L 892,740 L 891,729 L 890,728 L 888,717 L 884,705 L 871,677 L 857,655 L 844,639 L 826,621 L 798,600 L 776,588 L 774,588 L 769,585 L 767,585 L 764,583 L 755,580 L 752,580 L 743,577 L 728,576 L 727,575 Z M 559,631 L 571,644 L 586,643 L 587,642 L 600,642 L 601,641 L 616,641 L 617,640 L 638,640 L 639,641 L 639,649 L 640,650 L 640,672 L 641,673 L 641,693 L 642,694 L 642,699 L 641,700 L 631,700 L 630,701 L 602,701 L 601,702 L 572,702 L 569,703 L 569,704 L 580,715 L 594,714 L 595,713 L 603,713 L 604,712 L 617,712 L 618,711 L 663,710 L 664,709 L 688,709 L 689,708 L 716,708 L 717,707 L 746,707 L 747,706 L 751,706 L 751,704 L 745,698 L 723,681 L 720,681 L 705,698 L 692,698 L 691,699 L 664,699 L 663,698 L 662,663 L 661,662 L 661,640 L 662,639 L 672,639 L 673,638 L 700,638 L 701,637 L 754,636 L 755,633 L 742,621 L 725,609 L 719,614 L 709,627 L 661,628 L 660,627 L 660,618 L 659,617 L 658,575 L 665,568 L 665,567 L 650,560 L 635,555 L 636,586 L 637,587 L 637,607 L 638,608 L 638,628 L 637,629 Z M 479,495 L 475,497 L 476,505 L 471,517 L 456,540 L 431,571 L 406,596 L 384,614 L 362,627 L 360,627 L 354,630 L 347,631 L 346,632 L 328,632 L 326,631 L 329,636 L 339,646 L 351,651 L 367,651 L 368,650 L 387,649 L 388,648 L 416,648 L 417,649 L 425,649 L 426,650 L 437,651 L 438,652 L 449,654 L 456,657 L 451,664 L 415,700 L 387,723 L 369,734 L 360,737 L 356,737 L 355,738 L 347,738 L 346,739 L 345,738 L 347,742 L 364,759 L 366,759 L 374,752 L 396,742 L 408,738 L 411,738 L 418,735 L 421,735 L 422,734 L 425,734 L 426,733 L 429,733 L 438,730 L 443,730 L 444,729 L 449,729 L 450,730 L 450,739 L 451,740 L 451,766 L 452,767 L 452,799 L 453,800 L 453,836 L 454,837 L 454,869 L 455,870 L 455,906 L 456,907 L 456,923 L 471,911 L 471,910 L 477,904 L 479,900 L 473,726 L 476,724 L 480,724 L 481,723 L 487,723 L 488,722 L 508,720 L 511,718 L 512,715 L 510,712 L 497,712 L 496,713 L 487,713 L 486,714 L 478,714 L 477,715 L 470,715 L 469,716 L 462,716 L 461,717 L 448,718 L 447,719 L 442,719 L 441,720 L 436,720 L 435,721 L 430,721 L 429,722 L 423,722 L 422,723 L 418,723 L 412,725 L 407,725 L 401,727 L 398,727 L 397,726 L 409,718 L 448,686 L 471,664 L 473,664 L 482,669 L 502,684 L 517,700 L 523,709 L 529,721 L 531,727 L 531,731 L 532,732 L 533,744 L 536,750 L 541,753 L 547,753 L 551,751 L 555,747 L 558,740 L 558,729 L 555,720 L 547,707 L 529,688 L 519,680 L 501,668 L 480,657 L 480,656 L 497,639 L 497,638 L 509,626 L 509,625 L 530,602 L 540,598 L 543,596 L 543,595 L 537,588 L 529,583 L 514,576 L 508,575 L 507,576 L 507,587 L 504,594 L 487,620 L 464,649 L 462,649 L 459,647 L 457,647 L 447,642 L 438,639 L 435,639 L 426,636 L 422,636 L 421,635 L 407,634 L 406,633 L 375,633 L 374,632 L 387,626 L 389,624 L 399,619 L 414,609 L 433,594 L 469,559 L 490,534 L 496,525 L 503,519 L 513,514 L 513,512 L 505,505 L 493,499 L 484,496 L 480,496 Z M 954,480 L 947,501 L 934,525 L 917,548 L 898,568 L 882,580 L 869,587 L 867,587 L 858,591 L 851,592 L 850,593 L 846,593 L 840,595 L 830,595 L 829,596 L 834,596 L 840,598 L 848,598 L 849,599 L 858,599 L 859,598 L 868,598 L 869,597 L 873,597 L 874,596 L 881,595 L 901,586 L 919,572 L 931,558 L 937,549 L 945,533 L 949,521 L 949,518 L 951,514 L 951,511 L 952,510 L 953,497 L 954,496 Z M 627,354 L 639,367 L 647,382 L 649,388 L 649,391 L 650,392 L 650,398 L 651,399 L 651,411 L 650,412 L 649,422 L 646,428 L 645,433 L 637,448 L 626,464 L 615,485 L 615,487 L 612,492 L 610,498 L 610,501 L 608,506 L 608,510 L 607,511 L 607,523 L 606,524 L 606,527 L 607,528 L 608,541 L 609,542 L 609,545 L 613,557 L 621,571 L 621,568 L 619,563 L 619,559 L 618,558 L 617,541 L 616,540 L 617,521 L 618,520 L 618,515 L 619,514 L 620,507 L 625,496 L 625,494 L 634,477 L 656,445 L 662,430 L 662,427 L 663,426 L 663,422 L 664,421 L 664,404 L 663,403 L 663,398 L 655,379 L 649,371 L 640,362 Z M 566,336 L 570,334 L 581,333 L 582,332 L 602,332 L 603,333 L 607,333 L 608,334 L 615,335 L 621,337 L 626,340 L 628,340 L 641,348 L 658,362 L 659,364 L 672,376 L 688,386 L 697,389 L 708,390 L 709,391 L 728,389 L 728,388 L 721,388 L 720,387 L 713,386 L 695,378 L 685,371 L 667,354 L 647,339 L 625,329 L 622,329 L 617,327 L 613,327 L 612,326 L 590,326 L 589,327 L 585,327 L 584,328 L 581,328 L 575,330 Z M 906,304 L 906,330 L 905,331 L 905,338 L 904,339 L 903,348 L 902,349 L 902,352 L 901,353 L 901,356 L 898,365 L 893,375 L 893,377 L 885,392 L 868,416 L 849,436 L 848,436 L 834,449 L 830,451 L 823,457 L 799,472 L 777,483 L 775,483 L 744,499 L 730,508 L 717,518 L 701,534 L 691,548 L 685,560 L 680,579 L 688,566 L 699,552 L 712,539 L 727,527 L 746,515 L 770,503 L 772,503 L 803,488 L 805,488 L 807,486 L 823,478 L 849,460 L 873,437 L 890,414 L 891,411 L 896,404 L 899,398 L 899,396 L 903,389 L 909,371 L 909,367 L 911,361 L 911,356 L 912,355 L 912,343 L 914,342 L 915,343 L 915,346 L 916,347 L 916,350 L 919,359 L 920,369 L 921,370 L 922,384 L 923,385 L 924,409 L 923,410 L 923,425 L 922,426 L 922,432 L 921,433 L 920,443 L 919,444 L 919,447 L 918,448 L 918,451 L 917,452 L 917,455 L 916,456 L 916,459 L 914,465 L 912,468 L 912,470 L 905,486 L 903,488 L 895,503 L 881,521 L 867,535 L 857,543 L 834,556 L 810,564 L 794,567 L 803,567 L 804,568 L 824,567 L 825,566 L 831,566 L 836,564 L 840,564 L 852,560 L 855,558 L 857,558 L 870,551 L 883,542 L 902,523 L 917,501 L 927,480 L 933,462 L 933,458 L 934,457 L 935,449 L 936,448 L 937,434 L 938,433 L 938,406 L 937,405 L 937,395 L 936,394 L 936,388 L 935,387 L 933,373 L 932,372 L 930,361 L 924,343 L 922,340 L 921,335 L 914,321 L 914,319 L 911,315 Z M 732,272 L 723,283 L 710,294 L 692,304 L 690,304 L 687,306 L 675,310 L 671,310 L 670,311 L 661,312 L 660,313 L 651,313 L 650,314 L 610,314 L 609,315 L 596,315 L 599,316 L 608,316 L 609,317 L 619,318 L 620,319 L 629,320 L 630,321 L 638,322 L 639,323 L 644,323 L 645,324 L 650,324 L 651,325 L 658,325 L 659,326 L 676,326 L 677,325 L 687,324 L 696,321 L 704,317 L 714,309 L 722,299 L 729,285 Z M 680,210 L 679,210 L 674,226 L 668,237 L 659,250 L 643,266 L 624,279 L 605,288 L 600,289 L 597,291 L 592,292 L 582,297 L 580,297 L 563,306 L 549,316 L 539,326 L 534,333 L 531,339 L 530,345 L 511,357 L 500,368 L 493,378 L 487,393 L 488,393 L 496,387 L 506,382 L 508,382 L 517,378 L 525,377 L 526,376 L 542,375 L 543,376 L 550,376 L 551,377 L 559,378 L 573,384 L 579,388 L 586,395 L 590,401 L 591,405 L 593,408 L 594,417 L 595,418 L 594,432 L 586,457 L 575,480 L 575,482 L 573,485 L 567,503 L 566,513 L 565,514 L 565,534 L 566,535 L 566,540 L 567,541 L 567,544 L 568,545 L 568,548 L 571,557 L 579,573 L 587,584 L 603,599 L 593,586 L 584,569 L 583,564 L 581,561 L 581,558 L 579,554 L 578,546 L 577,545 L 577,539 L 576,538 L 576,523 L 577,522 L 578,510 L 579,509 L 579,506 L 580,505 L 580,502 L 582,496 L 584,493 L 586,486 L 591,477 L 591,475 L 601,456 L 601,454 L 606,443 L 606,440 L 608,435 L 608,431 L 609,430 L 609,415 L 608,414 L 608,409 L 606,403 L 598,389 L 591,382 L 581,375 L 563,368 L 553,367 L 552,366 L 532,366 L 531,367 L 526,367 L 525,368 L 518,369 L 509,373 L 507,372 L 509,369 L 521,358 L 528,354 L 534,352 L 537,352 L 539,349 L 539,344 L 545,335 L 553,327 L 564,319 L 567,318 L 574,313 L 576,313 L 586,308 L 598,304 L 601,304 L 605,302 L 608,302 L 632,294 L 640,290 L 652,282 L 664,270 L 674,253 L 677,244 L 678,237 L 679,236 L 679,231 L 680,230 Z"/>
+        <g class="logo-lines">
+          <path class="logo-line" pathLength="1" d="M492,768 L 501,779 L 511,794 L 523,817 L 523,819 L 525,822 L 529,834 L 531,847 L 535,859 L 538,863 L 542,865 L 548,865 L 550,864 L 555,859 L 558,853 L 558,841 L 554,832 L 554,830 L 552,828 L 551,825 L 536,805 L 519,788 L 503,775 Z"/>
+          <path class="logo-line" pathLength="1" d="M436,761 L 413,774 L 390,790 L 379,799 L 369,809 L 360,820 L 354,829 L 347,843 L 343,855 L 342,863 L 341,864 L 341,871 L 340,872 L 340,888 L 344,879 L 344,877 L 352,861 L 370,835 L 387,815 L 422,778 Z"/>
+          <path class="logo-line" pathLength="1" d="M748,755 L 742,749 L 723,734 L 720,734 L 704,749 L 682,749 L 681,750 L 653,750 L 652,751 L 604,752 L 582,742 L 582,748 L 583,749 L 583,774 L 584,775 L 584,801 L 585,802 L 585,827 L 586,828 L 587,888 L 588,889 L 588,892 L 600,886 L 609,877 L 609,858 L 608,857 L 608,854 L 609,853 L 647,852 L 648,851 L 671,851 L 672,850 L 694,850 L 695,849 L 714,849 L 715,850 L 715,862 L 716,865 L 736,857 L 737,854 L 736,853 L 736,827 L 735,826 L 735,800 L 734,799 L 734,778 L 733,777 L 733,768 L 741,761 L 746,758 Z"/>
+          <path class="logo-line" pathLength="1" d="M711,759 L 712,798 L 713,799 L 713,819 L 714,820 L 714,838 L 713,839 L 705,839 L 704,840 L 683,840 L 682,841 L 657,841 L 656,842 L 631,842 L 630,843 L 609,843 L 608,842 L 607,798 L 606,797 L 606,771 L 605,770 L 605,763 L 606,762 L 609,762 L 610,761 L 628,761 L 629,760 L 652,760 L 653,759 L 676,759 L 677,758 L 702,758 L 703,757 L 709,757 Z"/>
+          <path class="logo-line" pathLength="1" d="M800,637 L 814,658 L 825,681 L 833,705 L 834,713 L 835,714 L 835,719 L 836,720 L 836,726 L 837,727 L 837,758 L 836,759 L 836,766 L 835,767 L 835,771 L 832,779 L 832,782 L 829,791 L 827,794 L 827,796 L 819,812 L 813,820 L 812,823 L 804,833 L 792,846 L 791,846 L 781,856 L 771,864 L 748,879 L 720,893 L 718,893 L 705,899 L 684,906 L 681,906 L 677,908 L 674,908 L 673,909 L 670,909 L 669,910 L 666,910 L 665,911 L 662,911 L 653,914 L 649,914 L 648,915 L 644,915 L 639,917 L 635,917 L 634,918 L 620,920 L 615,922 L 611,922 L 606,924 L 602,924 L 597,926 L 593,926 L 592,927 L 581,929 L 577,931 L 574,931 L 556,937 L 543,943 L 541,943 L 523,952 L 501,967 L 482,986 L 477,994 L 474,997 L 465,1014 L 464,1019 L 462,1022 L 461,1029 L 473,1013 L 490,996 L 501,987 L 528,969 L 552,957 L 570,951 L 573,949 L 579,947 L 582,947 L 586,945 L 589,945 L 593,943 L 596,943 L 600,941 L 603,941 L 604,940 L 607,940 L 616,937 L 620,937 L 621,936 L 624,936 L 625,935 L 628,935 L 637,932 L 646,931 L 647,930 L 666,926 L 670,924 L 681,922 L 688,919 L 691,919 L 712,912 L 725,906 L 727,906 L 750,895 L 752,893 L 762,888 L 789,869 L 810,849 L 824,831 L 825,828 L 830,821 L 840,798 L 841,799 L 841,802 L 840,803 L 840,806 L 839,807 L 839,810 L 837,814 L 837,817 L 835,821 L 834,827 L 827,842 L 827,844 L 823,850 L 819,859 L 802,882 L 783,901 L 769,912 L 754,922 L 727,936 L 725,936 L 720,939 L 710,942 L 707,944 L 653,962 L 648,965 L 642,967 L 640,969 L 633,972 L 622,979 L 605,994 L 596,1006 L 590,1018 L 586,1030 L 584,1044 L 587,1038 L 602,1017 L 616,1003 L 635,989 L 645,984 L 647,982 L 649,982 L 658,977 L 660,977 L 668,973 L 683,968 L 686,968 L 690,966 L 693,966 L 697,964 L 700,964 L 711,960 L 717,959 L 720,957 L 738,951 L 751,944 L 753,944 L 755,942 L 770,934 L 784,924 L 808,901 L 825,877 L 835,857 L 835,855 L 839,847 L 844,832 L 844,829 L 846,825 L 846,821 L 849,812 L 850,802 L 851,801 L 851,794 L 852,793 L 852,783 L 853,782 L 853,757 L 852,756 L 851,739 L 850,738 L 850,733 L 849,732 L 849,728 L 847,723 L 847,719 L 843,709 L 842,703 L 838,695 L 838,693 L 823,665 L 811,649 Z"/>
+          <path class="logo-line" pathLength="1" d="M713,576 L 732,579 L 750,585 L 753,587 L 755,587 L 773,596 L 796,611 L 815,627 L 835,648 L 855,676 L 861,689 L 863,691 L 866,700 L 868,703 L 868,705 L 870,708 L 872,714 L 872,717 L 874,721 L 875,728 L 876,729 L 877,739 L 878,740 L 878,746 L 879,747 L 880,768 L 879,769 L 878,791 L 877,792 L 877,797 L 876,798 L 876,802 L 875,803 L 874,810 L 871,817 L 870,823 L 864,836 L 864,838 L 859,847 L 859,849 L 857,851 L 867,841 L 873,833 L 883,815 L 883,813 L 885,810 L 890,795 L 891,787 L 892,786 L 892,781 L 893,780 L 893,772 L 894,771 L 894,750 L 893,749 L 893,741 L 892,740 L 891,729 L 890,728 L 888,717 L 884,705 L 871,677 L 857,655 L 844,639 L 826,621 L 798,600 L 776,588 L 774,588 L 769,585 L 767,585 L 764,583 L 755,580 L 752,580 L 743,577 L 728,576 L 727,575 Z"/>
+          <path class="logo-line" pathLength="1" d="M559,631 L 571,644 L 586,643 L 587,642 L 600,642 L 601,641 L 616,641 L 617,640 L 638,640 L 639,641 L 639,649 L 640,650 L 640,672 L 641,673 L 641,693 L 642,694 L 642,699 L 641,700 L 631,700 L 630,701 L 602,701 L 601,702 L 572,702 L 569,703 L 569,704 L 580,715 L 594,714 L 595,713 L 603,713 L 604,712 L 617,712 L 618,711 L 663,710 L 664,709 L 688,709 L 689,708 L 716,708 L 717,707 L 746,707 L 747,706 L 751,706 L 751,704 L 745,698 L 723,681 L 720,681 L 705,698 L 692,698 L 691,699 L 664,699 L 663,698 L 662,663 L 661,662 L 661,640 L 662,639 L 672,639 L 673,638 L 700,638 L 701,637 L 754,636 L 755,633 L 742,621 L 725,609 L 719,614 L 709,627 L 661,628 L 660,627 L 660,618 L 659,617 L 658,575 L 665,568 L 665,567 L 650,560 L 635,555 L 636,586 L 637,587 L 637,607 L 638,608 L 638,628 L 637,629 Z"/>
+          <path class="logo-line" pathLength="1" d="M479,495 L 475,497 L 476,505 L 471,517 L 456,540 L 431,571 L 406,596 L 384,614 L 362,627 L 360,627 L 354,630 L 347,631 L 346,632 L 328,632 L 326,631 L 329,636 L 339,646 L 351,651 L 367,651 L 368,650 L 387,649 L 388,648 L 416,648 L 417,649 L 425,649 L 426,650 L 437,651 L 438,652 L 449,654 L 456,657 L 451,664 L 415,700 L 387,723 L 369,734 L 360,737 L 356,737 L 355,738 L 347,738 L 346,739 L 345,738 L 347,742 L 364,759 L 366,759 L 374,752 L 396,742 L 408,738 L 411,738 L 418,735 L 421,735 L 422,734 L 425,734 L 426,733 L 429,733 L 438,730 L 443,730 L 444,729 L 449,729 L 450,730 L 450,739 L 451,740 L 451,766 L 452,767 L 452,799 L 453,800 L 453,836 L 454,837 L 454,869 L 455,870 L 455,906 L 456,907 L 456,923 L 471,911 L 471,910 L 477,904 L 479,900 L 473,726 L 476,724 L 480,724 L 481,723 L 487,723 L 488,722 L 508,720 L 511,718 L 512,715 L 510,712 L 497,712 L 496,713 L 487,713 L 486,714 L 478,714 L 477,715 L 470,715 L 469,716 L 462,716 L 461,717 L 448,718 L 447,719 L 442,719 L 441,720 L 436,720 L 435,721 L 430,721 L 429,722 L 423,722 L 422,723 L 418,723 L 412,725 L 407,725 L 401,727 L 398,727 L 397,726 L 409,718 L 448,686 L 471,664 L 473,664 L 482,669 L 502,684 L 517,700 L 523,709 L 529,721 L 531,727 L 531,731 L 532,732 L 533,744 L 536,750 L 541,753 L 547,753 L 551,751 L 555,747 L 558,740 L 558,729 L 555,720 L 547,707 L 529,688 L 519,680 L 501,668 L 480,657 L 480,656 L 497,639 L 497,638 L 509,626 L 509,625 L 530,602 L 540,598 L 543,596 L 543,595 L 537,588 L 529,583 L 514,576 L 508,575 L 507,576 L 507,587 L 504,594 L 487,620 L 464,649 L 462,649 L 459,647 L 457,647 L 447,642 L 438,639 L 435,639 L 426,636 L 422,636 L 421,635 L 407,634 L 406,633 L 375,633 L 374,632 L 387,626 L 389,624 L 399,619 L 414,609 L 433,594 L 469,559 L 490,534 L 496,525 L 503,519 L 513,514 L 513,512 L 505,505 L 493,499 L 484,496 L 480,496 Z"/>
+          <path class="logo-line" pathLength="1" d="M954,480 L 947,501 L 934,525 L 917,548 L 898,568 L 882,580 L 869,587 L 867,587 L 858,591 L 851,592 L 850,593 L 846,593 L 840,595 L 830,595 L 829,596 L 834,596 L 840,598 L 848,598 L 849,599 L 858,599 L 859,598 L 868,598 L 869,597 L 873,597 L 874,596 L 881,595 L 901,586 L 919,572 L 931,558 L 937,549 L 945,533 L 949,521 L 949,518 L 951,514 L 951,511 L 952,510 L 953,497 L 954,496 Z"/>
+          <path class="logo-line" pathLength="1" d="M627,354 L 639,367 L 647,382 L 649,388 L 649,391 L 650,392 L 650,398 L 651,399 L 651,411 L 650,412 L 649,422 L 646,428 L 645,433 L 637,448 L 626,464 L 615,485 L 615,487 L 612,492 L 610,498 L 610,501 L 608,506 L 608,510 L 607,511 L 607,523 L 606,524 L 606,527 L 607,528 L 608,541 L 609,542 L 609,545 L 613,557 L 621,571 L 621,568 L 619,563 L 619,559 L 618,558 L 617,541 L 616,540 L 617,521 L 618,520 L 618,515 L 619,514 L 620,507 L 625,496 L 625,494 L 634,477 L 656,445 L 662,430 L 662,427 L 663,426 L 663,422 L 664,421 L 664,404 L 663,403 L 663,398 L 655,379 L 649,371 L 640,362 Z"/>
+          <path class="logo-line" pathLength="1" d="M566,336 L 570,334 L 581,333 L 582,332 L 602,332 L 603,333 L 607,333 L 608,334 L 615,335 L 621,337 L 626,340 L 628,340 L 641,348 L 658,362 L 659,364 L 672,376 L 688,386 L 697,389 L 708,390 L 709,391 L 728,389 L 728,388 L 721,388 L 720,387 L 713,386 L 695,378 L 685,371 L 667,354 L 647,339 L 625,329 L 622,329 L 617,327 L 613,327 L 612,326 L 590,326 L 589,327 L 585,327 L 584,328 L 581,328 L 575,330 Z"/>
+          <path class="logo-line" pathLength="1" d="M906,304 L 906,330 L 905,331 L 905,338 L 904,339 L 903,348 L 902,349 L 902,352 L 901,353 L 901,356 L 898,365 L 893,375 L 893,377 L 885,392 L 868,416 L 849,436 L 848,436 L 834,449 L 830,451 L 823,457 L 799,472 L 777,483 L 775,483 L 744,499 L 730,508 L 717,518 L 701,534 L 691,548 L 685,560 L 680,579 L 688,566 L 699,552 L 712,539 L 727,527 L 746,515 L 770,503 L 772,503 L 803,488 L 805,488 L 807,486 L 823,478 L 849,460 L 873,437 L 890,414 L 891,411 L 896,404 L 899,398 L 899,396 L 903,389 L 909,371 L 909,367 L 911,361 L 911,356 L 912,355 L 912,343 L 914,342 L 915,343 L 915,346 L 916,347 L 916,350 L 919,359 L 920,369 L 921,370 L 922,384 L 923,385 L 924,409 L 923,410 L 923,425 L 922,426 L 922,432 L 921,433 L 920,443 L 919,444 L 919,447 L 918,448 L 918,451 L 917,452 L 917,455 L 916,456 L 916,459 L 914,465 L 912,468 L 912,470 L 905,486 L 903,488 L 895,503 L 881,521 L 867,535 L 857,543 L 834,556 L 810,564 L 794,567 L 803,567 L 804,568 L 824,567 L 825,566 L 831,566 L 836,564 L 840,564 L 852,560 L 855,558 L 857,558 L 870,551 L 883,542 L 902,523 L 917,501 L 927,480 L 933,462 L 933,458 L 934,457 L 935,449 L 936,448 L 937,434 L 938,433 L 938,406 L 937,405 L 937,395 L 936,394 L 936,388 L 935,387 L 933,373 L 932,372 L 930,361 L 924,343 L 922,340 L 921,335 L 914,321 L 914,319 L 911,315 Z"/>
+          <path class="logo-line" pathLength="1" d="M732,272 L 723,283 L 710,294 L 692,304 L 690,304 L 687,306 L 675,310 L 671,310 L 670,311 L 661,312 L 660,313 L 651,313 L 650,314 L 610,314 L 609,315 L 596,315 L 599,316 L 608,316 L 609,317 L 619,318 L 620,319 L 629,320 L 630,321 L 638,322 L 639,323 L 644,323 L 645,324 L 650,324 L 651,325 L 658,325 L 659,326 L 676,326 L 677,325 L 687,324 L 696,321 L 704,317 L 714,309 L 722,299 L 729,285 Z"/>
+          <path class="logo-line" pathLength="1" d="M680,210 L 679,210 L 674,226 L 668,237 L 659,250 L 643,266 L 624,279 L 605,288 L 600,289 L 597,291 L 592,292 L 582,297 L 580,297 L 563,306 L 549,316 L 539,326 L 534,333 L 531,339 L 530,345 L 511,357 L 500,368 L 493,378 L 487,393 L 488,393 L 496,387 L 506,382 L 508,382 L 517,378 L 525,377 L 526,376 L 542,375 L 543,376 L 550,376 L 551,377 L 559,378 L 573,384 L 579,388 L 586,395 L 590,401 L 591,405 L 593,408 L 594,417 L 595,418 L 594,432 L 586,457 L 575,480 L 575,482 L 573,485 L 567,503 L 566,513 L 565,514 L 565,534 L 566,535 L 566,540 L 567,541 L 567,544 L 568,545 L 568,548 L 571,557 L 579,573 L 587,584 L 603,599 L 593,586 L 584,569 L 583,564 L 581,561 L 581,558 L 579,554 L 578,546 L 577,545 L 577,539 L 576,538 L 576,523 L 577,522 L 578,510 L 579,509 L 579,506 L 580,505 L 580,502 L 582,496 L 584,493 L 586,486 L 591,477 L 591,475 L 601,456 L 601,454 L 606,443 L 606,440 L 608,435 L 608,431 L 609,430 L 609,415 L 608,414 L 608,409 L 606,403 L 598,389 L 591,382 L 581,375 L 563,368 L 553,367 L 552,366 L 532,366 L 531,367 L 526,367 L 525,368 L 518,369 L 509,373 L 507,372 L 509,369 L 521,358 L 528,354 L 534,352 L 537,352 L 539,349 L 539,344 L 545,335 L 553,327 L 564,319 L 567,318 L 574,313 L 576,313 L 586,308 L 598,304 L 601,304 L 605,302 L 608,302 L 632,294 L 640,290 L 652,282 L 664,270 L 674,253 L 677,244 L 678,237 L 679,236 L 679,231 L 680,230 Z"/>
+        </g>
+      </svg>
+      <span class="logo-word">GYEOL</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">Services</p>
+        <h2 class="h2">무엇을 맡기실 수 있나요</h2>
+      </div>
+      <p class="lead">영상이 필요한 팀과 제품이 필요한 팀은 기준이 다릅니다. 서비스별로 범위와 조건을 따로 안내합니다.</p>
+    </div>
+
+    <div class="svc-grid reveal">
+      <article class="svc">
+        <span class="num">01</span>
+        <h3>숏폼 영상 제작</h3>
+        <span class="en">Short-form Content</span>
+        <p class="desc">릴스·쇼츠·틱톡용 브랜드 영상을 기획, 촬영, 편집까지 한 번에 제작합니다. 매달 꾸준히 올릴 수 있는 운영형 제작에 맞춰져 있습니다.</p>
+        <ul>
+          <li><span>제작 범위</span><span>기획 · 촬영 · 편집 · 자막</span></li>
+          <li><span>제작 단위</span><span>월 4편부터</span></li>
+          <li><span>기본 납기</span><span>분량에 따라 협의</span></li>
+          <li><span>수정</span><span>편당 2회 포함</span></li>
+        </ul>
+        <a href="#pricing" class="btn ghost">숏폼 패키지 보기 <span class="arr">→</span></a>
+      </article>
+      <article class="svc">
+        <span class="num">02</span>
+        <h3>웹 · 앱 · 소프트웨어 개발</h3>
+        <span class="en">Web, App &amp; Software</span>
+        <p class="desc">회사 홈페이지부터 서비스형 웹, 모바일 앱, 업무용 소프트웨어까지 설계·디자인·개발·운영을 맡습니다.</p>
+        <ul>
+          <li><span>제작 범위</span><span>기획 · UI 디자인 · 개발 · 배포</span></li>
+          <li><span>대상</span><span>홈페이지 · 웹서비스 · 앱 · 관리도구</span></li>
+          <li><span>기간</span><span>범위에 따라 협의</span></li>
+          <li><span>런칭 후</span><span>유지보수 계약 선택</span></li>
+        </ul>
+        <a href="#pricing" class="btn ghost">개발 견적 기준 보기 <span class="arr">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">Selected Work</p>
+        <h2 class="h2">작업 사례 <span style="font-size:.5em;color:#A79D90;font-family:var(--sans);font-weight:400;margin-left:8px">준비 중</span></h2>
+      </div>
+      <p class="lead">GYEOL은 지금 첫 프로젝트를 준비하고 있습니다. 함께할 첫 파트너의 작업이 이 자리에 소개됩니다.</p>
+    </div>
+
+    <div class="cases">
+      <article class="case reveal">
+        <div class="thumb">
+          <div class="phone"><span class="soon-mark">Coming soon</span></div>
+        </div>
+        <p class="tag">Short-form</p>
+        <h3>숏폼 영상 제작</h3>
+        <p class="soon">첫 숏폼 사례를 준비하고 있습니다.</p>
+      </article>
+
+      <article class="case reveal">
+        <div class="thumb">
+          <div class="browser"><div class="bar"><i></i><i></i><i></i></div><div class="body"><b class="w60"></b><b class="blk"></b><b></b><b class="w80"></b><b class="w60"></b></div></div>
+        </div>
+        <p class="tag">Website</p>
+        <h3>웹사이트</h3>
+        <p class="soon">첫 웹사이트 사례를 준비하고 있습니다.</p>
+      </article>
+
+      <article class="case reveal">
+        <div class="thumb">
+          <div class="appstack"><div class="phone"></div><div class="phone"></div></div>
+        </div>
+        <p class="tag">App · Software</p>
+        <h3>앱 · 소프트웨어</h3>
+        <p class="soon">첫 앱·소프트웨어 사례를 준비하고 있습니다.</p>
+      </article>
+    </div>
+    <p class="work-note">첫 프로젝트를 함께하실 분은 <a href="#contact" style="text-decoration:underline">프로젝트 문의</a>로 연락 주세요.</p>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">Pricing &amp; Scope</p>
+        <h2 class="h2">견적은 이렇게 정해집니다</h2>
+      </div>
+      <p class="lead">내부 검토용으로 바로 공유하실 수 있도록 포함 범위와 조건을 먼저 공개합니다.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="reveal">
+        <h3>숏폼 제작 패키지</h3>
+        <table class="pkg-table">
+          <thead><tr><th>패키지</th><th>구성</th><th>포함</th><th>월 비용</th></tr></thead>
+          <tbody>
+            <tr><td>Starter</td><td>월 4편 · 30초 내외</td><td>기획 · 편집 · 자막</td><td class="price">₩ 상담 후 안내</td></tr>
+            <tr><td>Growth</td><td>월 8편 · 60초 내외</td><td>기획 · 촬영 1회 · 편집</td><td class="price">₩ 상담 후 안내</td></tr>
+            <tr><td>Pro</td><td>월 12편 이상</td><td>촬영 2회 · 채널 운영 리포트</td><td class="price">₩ 상담 후 안내</td></tr>
+          </tbody>
+        </table>
+        <p class="fine">모든 패키지 편당 수정 2회 포함 · 부가세 별도 · 모델·장소 섭외 비용 별도</p>
+      </div>
+
+      <div class="reveal">
+        <h3>개발 비용을 바꾸는 조건</h3>
+        <ul class="factors">
+          <li><span>1</span>화면 수와 기능 범위 (로그인, 결제, 예약 등)</li>
+          <li><span>2</span>디자인 수준 (템플릿 기반 / 맞춤 디자인)</li>
+          <li><span>3</span>관리자 페이지와 외부 시스템 연동 여부</li>
+          <li><span>4</span>웹만 / 앱 포함 (iOS · Android)</li>
+          <li><span>5</span>런칭 후 유지보수 범위</li>
+        </ul>
+        <div class="example"><b>참고</b> · 회사 홈페이지 5~7페이지, 맞춤 디자인, 문의 폼 정도라면 보통 4~6주가 걸립니다. 정확한 일정은 상담 후 안내드립니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <p class="eyebrow">Process</p>
+        <h2 class="h2">진행 과정</h2>
+      </div>
+      <p class="lead">단계마다 산출물을 확인하고 다음으로 넘어갑니다.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step"><span class="n">01</span><h4>상담</h4><p>목표와 예산, 일정 확인</p></div>
+      <div class="step"><span class="n">02</span><h4>기획 · 견적</h4><p>범위 정의서와 견적서 전달</p></div>
+      <div class="step"><span class="n">03</span><h4>계약</h4><p>산출물·일정·수정 범위 명시</p></div>
+      <div class="step"><span class="n">04</span><h4>제작 · 개발</h4><p>중간 시안 공유와 피드백</p></div>
+      <div class="step"><span class="n">05</span><h4>검수 · 런칭</h4><p>최종 확인 후 공개·배포</p></div>
+      <div class="step"><span class="n">06</span><h4>운영</h4><p>유지보수와 성과 리포트</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <img class="big-glyph" src="assets/gyeol-logo-ink.svg" alt="" aria-hidden="true">
+      <p class="meaning">GYEOL · 맺을 결</p>
+    </div>
+    <div class="reveal">
+      <p class="eyebrow">About</p>
+      <h2 class="h2" style="margin-top:14px">생각을 결과로 맺는 회사</h2>
+      <p>結은 ‘잇다, 맺다, 완성하다’라는 뜻입니다. 머릿속의 아이디어와 실제로 작동하는 결과물 사이를 잇는 일, 그것이 결이 하는 일입니다.</p>
+      <p>영상과 소프트웨어는 다른 기술이지만 출발점은 같습니다. 고객의 생각을 정확히 이해하는 것. 그래서 기획부터 운영까지 한 팀이 끝까지 맡습니다.</p>
+      <blockquote>생각을 잇고, 가치를 완성하다</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info reveal">
+      <p class="eyebrow">Contact</p>
+      <h2 class="h2" style="margin-top:14px">프로젝트 문의</h2>
+      <p class="lead" style="margin-top:20px">간단히 적어주셔도 괜찮습니다.<br>영업일 기준 1일 안에 답변드립니다.</p>
+      <dl>
+        <dt>이메일</dt><dd><a href="mailto:deokhun93@gmail.com">deokhun93@gmail.com</a></dd>
+        <dt>상담 시간</dt><dd>평일 10:00 – 18:00</dd>
+      </dl>
+    </div>
+
+    <form class="reveal" id="form" novalidate>
+      <div class="field full">
+        <span class="legend">문의 분야</span>
+        <div class="chips" role="radiogroup">
+          <input type="radio" name="svc" id="s1" value="shorts" checked><label for="s1">숏폼 제작</label>
+          <input type="radio" name="svc" id="s2" value="dev"><label for="s2">웹 · 앱 · 소프트웨어</label>
+          <input type="radio" name="svc" id="s3" value="both"><label for="s3">둘 다</label>
+        </div>
+      </div>
+      <div class="field"><label for="f-co">회사명</label><input id="f-co" placeholder="회사 또는 브랜드명"></div>
+      <div class="field"><label for="f-name">담당자</label><input id="f-name" placeholder="성함"></div>
+      <div class="field"><label for="f-tel">연락처</label><input id="f-tel" type="tel" placeholder="010-0000-0000"></div>
+      <div class="field"><label for="f-mail">이메일</label><input id="f-mail" type="email" placeholder="name@company.com"></div>
+      <div class="field full"><label for="f-msg">요청 내용</label><textarea id="f-msg" placeholder="만들고 싶은 것, 참고 사이트나 영상, 원하는 일정 등을 자유롭게 적어주세요."></textarea></div>
+      <div class="field full">
+        <label for="f-budget">예산 <em>선택</em></label>
+        <select id="f-budget"><option>아직 정하지 않았어요</option><option>500만 원 미만</option><option>500만 – 1,500만 원</option><option>1,500만 – 3,000만 원</option><option>3,000만 원 이상</option></select>
+      </div>
+      <div class="field full">
+        <label class="agree"><input type="checkbox" id="f-agree"><span>문의 응대를 위한 <a href="privacy.html" target="_blank" rel="noopener">개인정보 수집·이용</a>에 동의합니다. (필수)</span></label>
+      </div>
+      <div class="field full"><button type="submit" class="btn solid" style="justify-content:center;cursor:pointer">문의 보내기 <span class="arr">→</span></button></div>
+      <p class="form-msg" id="form-msg" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a href="#top" class="brand"><img class="mark" src="assets/gyeol-logo-ivory.svg" alt=""><span class="word">GYEOL</span></a>
+        <p class="slogan">생각을 잇고, 가치를 완성하다</p>
+      </div>
+      <nav class="foot-links">
+        <a href="#services">서비스</a><a href="#work">사례</a><a href="#contact">문의</a><a href="privacy.html"><b>개인정보처리방침</b></a>
+      </nav>
+    </div>
+    <div class="foot-info">
+      <span><b>GYEOL 결</b></span>
+      <span>대표 김덕훈</span>
+      <span><a href="mailto:deokhun93@gmail.com">deokhun93@gmail.com</a></span>
+    </div>
+    <p style="margin-top:20px;color:#6F685F">© 2026 GYEOL. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  const header=document.querySelector('header');
+  addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>8),{passive:true});
+
+  const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+  burger.addEventListener('click',()=>{const o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');burger.setAttribute('aria-expanded',false)}));
+
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  document.getElementById('form').addEventListener('submit',e=>{
+    e.preventDefault();
+    const msg=document.getElementById('form-msg');
+    const v=id=>document.getElementById(id).value.trim();
+    if(!document.getElementById('f-agree').checked){msg.textContent='개인정보 수집·이용에 동의해 주세요.';return}
+    if(!v('f-name')||(!v('f-tel')&&!v('f-mail'))){msg.textContent='담당자 성함과 연락처 또는 이메일을 적어주세요.';return}
+    const svc=document.querySelector('input[name=svc]:checked + label').textContent;
+    const subject=`[GYEOL 문의] ${svc} · ${v('f-co')||v('f-name')}`;
+    const body=[
+      `문의 분야: ${svc}`,
+      `회사명: ${v('f-co')}`,
+      `담당자: ${v('f-name')}`,
+      `연락처: ${v('f-tel')}`,
+      `이메일: ${v('f-mail')}`,
+      `예산: ${v('f-budget')}`,
+      '',
+      '요청 내용:',
+      v('f-msg')
+    ].join('\n');
+    location.href=`mailto:deokhun93@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    msg.textContent='메일 앱이 열리면 내용을 확인하고 보내주세요. 열리지 않으면 deokhun93@gmail.com 으로 직접 보내주셔도 됩니다.';
+  });
+</script>
+</body>
+</html>
